@@ -15,6 +15,10 @@ FROM vjirovsky/vaseks-af-host:dotnet-2.0
 ENV AzureWebJobsStorage="---YOUR-STORAGE_CONNECTION_STRING---"
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
+
+# if you want to have health check
+# WARNING - this healthcheck is exposed (anybody can call this healthcheck)
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost:80/api/healthcheck || exit 1
 ```
 
 
