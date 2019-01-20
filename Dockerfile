@@ -10,8 +10,3 @@ FROM vjirovsky/vaseks-af-host:dotnet-2.0
 ENV AzureWebJobsStorage="---YOUR-STORAGE_CONNECTION_STRING---"
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
-
-WORKDIR /home/site/wwwroot
-
-ENV ASPNETCORE_URLS=http://+:5000
-EXPOSE 5000/tcp
