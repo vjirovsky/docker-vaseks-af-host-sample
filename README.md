@@ -3,14 +3,14 @@
 This repo contains Docker image with sample project for [Vasek's Azure Functions runtime host](https://github.com/vjirovsky/docker-vaseks-af-host/). 
 
 ```docker
-FROM microsoft/dotnet:2.1-sdk AS installer-env
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS installer-env
 
 COPY src/ /src/
 RUN cd /src/SampleFunctionApp && \
     mkdir -p /home/site/wwwroot && \
     dotnet publish *.csproj -c "Release" --output /home/site/wwwroot
 
-FROM vjirovsky/vaseks-af-host:dotnet-2.0
+FROM vjirovsky/vaseks-af-host:dotnet-3.1
 
 ENV AzureWebJobsStorage="---YOUR-STORAGE_CONNECTION_STRING---"
 
